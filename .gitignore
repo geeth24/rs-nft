@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 
+/rs-nft-sanity
 # testing
 /coverage
 
