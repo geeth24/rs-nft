@@ -21,25 +21,25 @@ function Drops({ collections }: Props) {
       </div>
       <div className="mt-12 grid gap-6 md:grid-cols-3 lg:mt-14 lg:gap-12">
         {collections.map((collection, i) => (
-          <motion.div
-            className="mb-2 flex md:mb-0 md:flex-col"
-            key={i + 1}
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{
-              delay: i * 0.1,
-              duration: 0.5,
-            }}
-            viewport={{ once: true, amount: 0.8 }}
+          <Link
+            href={`${
+              collection.slug.current.charAt(0) === "c"
+                ? ""
+                : `/nft/${collection.slug.current}`
+            }`}
+            //is disabled if collection is not for sale
+            passHref
           >
-            <Link
-              href={`${
-                collection.slug.current.charAt(0) === "c"
-                  ? ""
-                  : `/nft/${collection.slug.current}`
-              }`}
-              //is disabled if collection is not for sale
-              passHref
+            <motion.div
+              className="mb-2 flex md:mb-0 md:flex-col"
+              key={i + 1}
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{
+                delay: i * 0.1,
+                duration: 0.5,
+              }}
+              viewport={{ once: true, amount: 0.8 }}
             >
               <img
                 className="mr-4 h-36 w-auto rounded-lg md:h-auto md:w-full"
@@ -52,8 +52,8 @@ function Drops({ collections }: Props) {
                 </h3>
                 <p className="text-gray-400">{collection.description}</p>
               </div>
-            </Link>
-          </motion.div>
+            </motion.div>
+          </Link>
         ))}
       </div>
     </div>

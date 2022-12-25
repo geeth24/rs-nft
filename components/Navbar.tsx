@@ -68,7 +68,7 @@ export default function Navbar() {
       </div>
       <div className=" ml-auto mr-[20px] rounded-full   bg-gradient-to-br from-blue-600 to-sky-400 p-1  lg:ml-10">
         <button
-          className="flex flex-col items-center justify-center rounded-full  bg-black px-[20px] py-[10px] text-[14.7px] font-semibold text-white transition-all duration-300 active:scale-95"
+          className="flex flex-col items-center justify-center rounded-full  bg-black  px-[20px] py-[10px] text-[14.7px] font-semibold text-white transition-all duration-300 active:scale-95"
           onClick={() => {
             if (address) {
               disconnect();
@@ -81,7 +81,7 @@ export default function Navbar() {
             ? ` ${address.substring(0, 5)}...${address.substring(
                 address.length - 5
               )}`
-            : "Connect Wallet"}
+            : "Connect"}
         </button>
       </div>
       <div

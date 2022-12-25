@@ -4,8 +4,8 @@ import React from "react";
 
 function Hero() {
   return (
-    <div className="   bg-[url(/waves.png)] bg-cover bg-no-repeat py-24 px-4 lg:py-8 ">
-      <div className="mx-auto grid  max-w-5xl lg:grid-cols-12 lg:gap-12 lg:py-16 xl:gap-0">
+    <div className="   bg-[url(/waves.png)] bg-cover bg-no-repeat py-32 px-4 lg:py-8 ">
+      <div className="mx-auto grid  max-w-screen-xl lg:grid-cols-12 lg:gap-12 lg:py-16 xl:gap-0">
         <div className="mr-auto mb-10 place-self-center px-2 lg:col-span-7 xl:col-span-8 xl:mb-0 ">
           <h1 className="mb-4 max-w-lg text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl xl:text-6xl">
             Reactive Shots NFT Marketplace
@@ -29,9 +29,9 @@ function Hero() {
           </div>
         </div>
 
-        <div className="hidden lg:col-span-4 lg:block xl:col-span-4">
+        <div className=" col-span-2  lg:col-span-4  lg:block xl:col-span-4">
           <motion.img
-            className="h-full w-full object-contain"
+            className="h-96 lg:h-full lg:w-full  object-contain"
             src="/nft.png"
             alt="Reactive Shots NFT Marketplace"
             //floating animation
