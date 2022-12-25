@@ -29,10 +29,11 @@ function Drops({ collections }: Props) {
             }`}
             //is disabled if collection is not for sale
             passHref
+          key={i + 1}
           >
             <motion.div
               className="mb-2 flex md:mb-0 md:flex-col"
-              key={i + 1}
+             
               initial={{ y: 50, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{
