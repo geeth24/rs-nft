@@ -1,7 +1,11 @@
+import { useContract } from "@thirdweb-dev/react";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import React from "react";
+import Drops from "../components/Drops";
+import Hero from "../components/Hero";
+import Navbar from "../components/Navbar";
 import { sanityClient, urlFor } from "../sanity";
 import { Collection } from "../typings";
 
@@ -10,38 +14,37 @@ interface Props {
 }
 function Home({ collections }: Props) {
   console.log(collections);
+
+  const nftDrop = useContract(collections[0].address, "nft-drop").contract;
+  var imagesArray: any[] = [];
+
+  React.useEffect(() => {
+    if (!nftDrop) return;
+
+    const getNftDrop = async () => {
+      var randomNumbers = [];
+      for (var i = 0; i < 10; i++) {
+        randomNumbers.push(Math.floor(Math.random() * 77));
+      }
+
+      for (var i = 0; i < randomNumbers.length; i++) {
+        const nftDropData = await nftDrop.get(randomNumbers[i]);
+        imagesArray.push({ image: nftDropData.metadata.image });
+        console.log(nftDropData.metadata.image);
+      }
+    };
+    getNftDrop();
+    console.log(imagesArray);
+  }, [nftDrop]);
+
   return (
-    <div className="h-screen  bg-black">
-      <div className="mx-auto flex min-h-screen max-w-7xl flex-col py-20 px-10 2xl:px-0">
-        <Head>
-          <title>NFT Drop</title>
-        </Head>
-        <h1 className="mb-10 text-4xl font-extralight text-white">
-          The {` `}{" "}
-          <span className="font-extrabold underline decoration-violet-700/50 ">
-            Reactive Shots
-          </span>{" "}
-          {` `}NFT Marketplace
-        </h1>
-        <main className="bg-gray-900 p-10 shadow-xl shadow-purple-400/20">
-          <div className="grid space-x-3 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-            {collections.map((collection) => (
-              <Link href={`/nft/${collection.slug.current}`} key={collection._id}>
-                <div className="flex transform cursor-pointer flex-col items-center transition duration-500 ease-in-out hover:scale-105">
-                  <img
-                    className="h-60 w-96 rounded-2xl object-cover"
-                    src={urlFor(collection.mainImage).url()}
-                  />
-                  <h2 className="text-3xl text-white">{collection.title}</h2>
-                  <p className="mt-2 text-sm text-gray-300">
-                    {collection.description}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </main>
-      </div>
+    <div>
+      <Head>
+        <title>RS | NFT Marketplace</title>
+      </Head>
+      <Navbar />
+      <Hero />
+      <Drops collections={collections} />
     </div>
   );
 }
